@@ -23,6 +23,12 @@ Route::get('/', function () {
 Route::get('hello', 'HelloController@index');
 Route::get('/hello/{name}', 'HelloController@show');
 
+Route::get('blade', function ()
+{
+	$drinks = array('Vodka', 'Gin', 'Brandy');
+	return view('page', array('name' => 'The Raven', 'day' => 'Friday', 'drinks' => $drinks));
+});
+
 Route::get('/','Front@index');
 Route::get('/products','Front@products');
 Route::get('/products/details/{id}','Front@product_details');

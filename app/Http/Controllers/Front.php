@@ -2,61 +2,61 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 // use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 class Front extends Controller
 {
     public function index() {
-        return 'index page';
+        return view('home', array('page' => 'home'));
     }
 
     public function products() {
-        return 'products page';
+        return view('products', array('page' => 'products'));
     }
 
     public function product_details($id) {
-        return 'product details page';
+        return view('product_details', array('page' => 'products'));
     }
 
-    public function product_categories() {
-        return 'product categories page';
+    public function product_categories($name) {
+        return view('products', array('page' => 'products'));
     }
 
-    public function product_brands() {
-        return 'product brands page';
+    public function product_brands($name, $category = null) {
+        return view('products', array('page' => 'products'));
     }
 
     public function blog() {
-        return 'blog page';
+        return view('blog', array('page' => 'blog'));
     }
 
     public function blog_post($id) {
-        return 'blog post page';
+        return view('blog_post', array('page' => 'blog'));
     }
 
     public function contact_us() {
-        return 'contact us page';
+        return view('contact_us', array('page' => 'contact_us'));
     }
 
     public function login() {
-        return 'login page';
+        return view('login', array('page' => 'home'));
     }
 
     public function logout() {
-        return 'logout page';
+        return view('login', array('page' => 'home'));
     }
 
     public function cart() {
-        return 'cart page';
+        return view('cart', array('page' => 'home'));
     }
 
     public function checkout() {
-        return 'checkout page';
+        return view('checkout', array('page' => 'home'));
     }
 
     public function search($query) {
-        return "$query search page";
+        return view('products', array('page' => 'products'));
     }
 }
