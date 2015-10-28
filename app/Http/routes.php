@@ -14,3 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Route::get('/hello', function ()
+// {
+// 	return 'Hello world!';
+// });
+
+Route::get('hello', 'HelloController@index');
+
+Route::get('/hello/{name}', 'HelloController@show');
