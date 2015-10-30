@@ -19,17 +19,6 @@ class Employees extends Migration
             $table->string('contact_number');
             $table->timestamps();
         });
-
-        $faker = Faker\Factory::create();
-        $limit = 33;
-
-        for ($i=0; $i < $limit; $i++) { 
-            DB::table('employees')->insert([ //,
-                'name' => $faker->name,
-                'email' => $faker->unique()->email,
-                'contact_number' => $faker->phoneNumber,
-                ]);
-        }
     }
 
     /**
