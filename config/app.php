@@ -137,6 +137,9 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+        // Shoppingcart package
+        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -193,6 +196,9 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
+
+        // Shoppingcart alias
+        'Cart'    => Gloudemans\Shoppingcart\Facades\Cart::class,
 
     ],
 

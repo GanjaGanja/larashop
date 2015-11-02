@@ -32,67 +32,74 @@
 Route::get('/','Front@index');
 Route::get('/products','Front@products');
 Route::get('/products/details/{id}','Front@product_details');
-Route::get('/products/categories','Front@product_categories');
-Route::get('/products/brands','Front@product_brands');
+Route::get('/products/categories/{name}','Front@product_categories');
+Route::get('/products/brands/{name}/{category?}','Front@product_brands');
 Route::get('/blog','Front@blog');
 Route::get('/blog/post/{id}','Front@blog_post');
 Route::get('/contact-us','Front@contact_us');
+
+// Authentication routes
 Route::get('/login','Front@login');
 Route::get('/logout','Front@logout');
+
+//Cart routes
 Route::get('/cart','Front@cart');
+Route::post('/cart','Front@cart');
+Route::post('/cart-remove-item','Front@cart_remove_item');
+Route::get('/clear-cart','Front@clear_cart');
 Route::get('/checkout','Front@checkout');
 Route::get('/search/{query}','Front@search');
 
 /////////////////
 // Test routes //
 /////////////////
-Route::get('/insert', function ()
-{
-	App\Category::create(array('name' => 'Music'));
-	return 'category added';
-});
+// Route::get('/insert', function ()
+// {
+// 	App\Category::create(array('name' => 'Music'));
+// 	return 'category added';
+// });
 
-Route::get('/read', function ()
-{
-	$category = new App\Category();
-	$data = $category->all(array('name', 'id'));
+// Route::get('/read', function ()
+// {
+// 	$category = new App\Category();
+// 	$data = $category->all(array('name', 'id'));
 
-	foreach ($data as $list) {
-		echo $list->id . ' ' . $list->name . '<br>';
-	}
-});
+// 	foreach ($data as $list) {
+// 		echo $list->id . ' ' . $list->name . '<br>';
+// 	}
+// });
 
-Route::get('/update', function ()
-{
-	$category = App\Category::find(6);
-	$category->name = 'HEAVY METAL';
-	$category->save();
+// Route::get('/update', function ()
+// {
+// 	$category = App\Category::find(6);
+// 	$category->name = 'HEAVY METAL';
+// 	$category->save();
 
-	$data = $category->all(array('name', 'id'));
+// 	$data = $category->all(array('name', 'id'));
 
-	foreach ($data as $list) {
-		echo $list->id . ' ' . $list->name . ' ';
-	}
-});
+// 	foreach ($data as $list) {
+// 		echo $list->id . ' ' . $list->name . ' ';
+// 	}
+// });
 
-Route::get('/delete', function ()
-{
-	$category = App\Category::find(5);
-	$category->delete();
+// Route::get('/delete', function ()
+// {
+// 	$category = App\Category::find(5);
+// 	$category->delete();
 
-	$data = $category->all(array('name', 'id'));
+// 	$data = $category->all(array('name', 'id'));
 
-	foreach ($data as $list) {
-		echo $list->id . ' ' . $list->name . ' ';
-	}
-});
+// 	foreach ($data as $list) {
+// 		echo $list->id . ' ' . $list->name . ' ';
+// 	}
+// });
 
-Route::get('/raw', function () {
-    $sql = "INSERT INTO categories (name) VALUES ('POMBE')";
+// Route::get('/raw', function () {
+//     $sql = "INSERT INTO categories (name) VALUES ('POMBE')";
 
-    DB::statement($sql);
-    $results = DB::select(DB::raw("SELECT * FROM categories"));
+//     DB::statement($sql);
+//     $results = DB::select(DB::raw("SELECT * FROM categories"));
 
-    print_r($results);
-}
-);
+//     print_r($results);
+// }
+// );
