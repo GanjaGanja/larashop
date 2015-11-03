@@ -91,7 +91,7 @@ class Front extends Controller
         }
 
         //remove item
-        if (Request::get('product_id') && (Request::get('remove')) == 1) {
+        if (Request::get('product_id') && (Request::get('remove')) == true) {
             $rowId = Cart::search(array('id' => Request::get('product_id')));
             $item = Cart::get($rowId[0]);
             Cart::remove($rowId[0]);
