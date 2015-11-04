@@ -7,9 +7,11 @@ namespace App\Http\Controllers;
 use App\Brand;
 use App\Category;
 use App\Product;
+use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Auth;
 use Cart;
 
 class Front extends Controller
@@ -65,7 +67,8 @@ class Front extends Controller
     }
 
     public function logout() {
-        return view('login', array('title' => 'Welcome', 'description' => '', 'page' => 'home'));
+        Auth::logout();
+        return Redirect::away('login');
     }
 
     public function cart() {
@@ -117,5 +120,27 @@ class Front extends Controller
 
     public function search($query) {
         return view('products', array('title' => 'Welcome', 'description' => '', 'page' => 'products'));
+    }
+
+    public function register()
+    {
+        if (Request::isMethod('post')) {
+            User::create([
+                'name' => Request::get('name'),
+                'email' => Request::get('email'),
+                'password' => bcrypt(Request::get('password')),
+            ]);
+        }
+
+        return Redirect::away('login');
+    }
+
+    public function authenticate()
+    {
+        if (Auth::attempt(['email' => Request::get('email'), 'password' => Request::get('password')])) {
+            return redirect()->intended('checkout');
+        } else {
+            return view('login', array('title' => 'Welcome', 'description' => '', 'page' => 'home'));
+        }
     }
 }
