@@ -65,7 +65,7 @@
                                 <span>
                                     <span>US ${{$product->price}}</span>
                                     <label>Quantity:</label>
-                                    <input type="number" value="3" id="quantity" name="quantity" />
+                                    <input type="number" value="3" id="quantity" name="quantity" min="1" max="99" />
                                     <input type="hidden" name="product_id" value="{{$product->id}}">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <button type="submit" class="btn btn-fefault cart">
