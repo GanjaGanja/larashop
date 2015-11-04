@@ -37,9 +37,9 @@
                         </td>
                         <td class="cart_quantity">
                             <div class="cart_quantity_button">
-                                {{-- <form method="POST" action="{{url('cart')}}"> --}}
+                                <form method="POST" action="{{url('cart')}}">
                                     <a class="cart_quantity_up" href='{{url("cart?product_id=$item->id&increment=1")}}'> + </a>
-                                {{-- </form> --}}
+                                </form>
                                 <input class="cart_quantity_input" type="text" name="quantity" value="{{$item->qty}}" autocomplete="off" size="2">
                                 <a class="cart_quantity_down" href='{{url("cart?product_id=$item->id&decrease=1")}}'> - </a>
                             </div>

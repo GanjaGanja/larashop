@@ -35,6 +35,7 @@
                                         <h2>${{$product->price}}</h2>
                                         <p>${{$product->name}}</p>
                                         <form method="POST" action="{{url('cart')}}">
+                                            <input type="hidden" name="quantity" value="1">
                                             <input type="hidden" name="product_id" value="{{$product->id}}">
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                             <button type="submit" class="btn btn-fefault add-to-cart">

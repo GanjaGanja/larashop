@@ -69,11 +69,16 @@ class Front extends Controller
     }
 
     public function cart() {
-        //add new item to cart
+        //add 1-99 new items to cart
         if (Request::isMethod('post')) {
+            if ((Request::get('quantity') >= 1) && (Request::get('quantity') < 100)) {
+                $quantity = Request::get('quantity');
+             } else {
+                $quantity = 1;
+             }
             $product_id = Request::get('product_id');
             $product = Product::find($product_id);
-            Cart::add(array('id' => $product_id, 'name' => $product->name, 'qty' => 1, 'price' => $product->price));
+            Cart::add(array('id' => $product_id, 'name' => $product->name, 'qty' => $quantity, 'price' => $product->price));
         }
 
         //increment the quantity

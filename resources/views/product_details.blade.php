@@ -61,11 +61,13 @@
                             <h2>{{$product->name}}</h2>
                             <p>Web ID: {{$product->id}}</p>
                             <img src="{{asset('images/product-details/rating.png')}}" alt="" />
-                            <form method="GET" action="{{url('cart')}}">
+                            <form method="POST" action="{{url('cart')}}">
                                 <span>
                                     <span>US ${{$product->price}}</span>
                                     <label>Quantity:</label>
-                                    <input type="text" value="3" id="quantity" name="quantity" />
+                                    <input type="number" value="3" id="quantity" name="quantity" />
+                                    <input type="hidden" name="product_id" value="{{$product->id}}">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <button type="submit" class="btn btn-fefault cart">
                                         <i class="fa fa-shopping-cart"></i>
                                         Add to cart
