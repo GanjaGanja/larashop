@@ -71,6 +71,28 @@ class Front extends Controller
         return Redirect::away('login');
     }
 
+    public function register()
+    {
+        if (Request::isMethod('post')) {
+            User::create([
+                'name' => Request::get('name'),
+                'email' => Request::get('email'),
+                'password' => bcrypt(Request::get('password'))
+            ]);
+        }
+
+        return Redirect::away('auth/login');
+    }
+
+    public function authenticate()
+    {
+        if (Auth::attempt(['email' => Request::get('email'), 'password' => Request::get('password')])) {
+            return redirect()->intended('checkout');
+        } else {
+            return view('login', array('title' => 'Welcome', 'description' => '', 'page' => 'home'));
+        }
+    }
+
     public function cart() {
         //add 1-99 new items to cart
         if (Request::isMethod('post')) {
@@ -120,27 +142,5 @@ class Front extends Controller
 
     public function search($query) {
         return view('products', array('title' => 'Welcome', 'description' => '', 'page' => 'products'));
-    }
-
-    public function register()
-    {
-        if (Request::isMethod('post')) {
-            User::create([
-                'name' => Request::get('name'),
-                'email' => Request::get('email'),
-                'password' => bcrypt(Request::get('password')),
-            ]);
-        }
-
-        return Redirect::away('login');
-    }
-
-    public function authenticate()
-    {
-        if (Auth::attempt(['email' => Request::get('email'), 'password' => Request::get('password')])) {
-            return redirect()->intended('checkout');
-        } else {
-            return view('login', array('title' => 'Welcome', 'description' => '', 'page' => 'home'));
-        }
     }
 }
