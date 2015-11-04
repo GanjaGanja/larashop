@@ -33,7 +33,7 @@
                                 <div class="product-overlay">
                                     <div class="overlay-content">
                                         <h2>${{$product->price}}</h2>
-                                        <p>${{$product->name}}</p>
+                                        <p>{{$product->name}}</p>
                                         <form method="POST" action="{{url('cart')}}">
                                             <input type="hidden" name="quantity" value="1">
                                             <input type="hidden" name="product_id" value="{{$product->id}}">
