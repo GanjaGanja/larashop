@@ -22,6 +22,7 @@ class BlogPostsTableSeeder extends Seeder
         		'image' => $faker->randomElement($array = array('blog-one.jpg','blog-two.jpg','blog-three.jpg')),
         		'blog' => '1',
         		'category_id' => $faker->numberBetween($min = 1, $max = 3),
+                'created_at' => $faker->dateTime($max = 'now'),
         	]);
         }
     }
