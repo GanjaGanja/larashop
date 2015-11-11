@@ -35,7 +35,7 @@ Route::get('/products/details/{id}', 'Front@product_details');
 Route::get('/products/categories/{name}', 'Front@product_categories');
 Route::get('/products/brands/{name}/{category?}', 'Front@product_brands');
 Route::get('/blog', 'Front@blog');
-Route::get('/blog/post/{id}', 'Front@blog_post');
+Route::get('/blog/{id}', 'Front@blog_post');
 Route::get('/contact-us', 'Front@contact_us');
 
 // Authentication routes

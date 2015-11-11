@@ -19,22 +19,29 @@
                 <div class="blog-post-area">
                     <h2 class="title text-center">Latest From our Blog</h2>
                     <div class="single-blog-post">
-                        <h3>{{$data['post']['title']}}</h3>
+                        {{-- <h3>{{$data['post']['title']}}</h3> --}}
+                        <h3>{{$title}}</h3>
                         <div class="post-meta">
                             <ul>
                                 <li><i class="fa fa-user"></i> Admin</li>
-                                <li><i class="fa fa-clock-o"></i> {{date('h:i:s A', strtotime($data['post']['created_at']))}}</li>
-                                <li><i class="fa fa-calendar"></i> {{date('d M, Y', strtotime($data['post']['created_at']))}}</li>
+                                {{-- <li><i class="fa fa-clock-o"></i> {{date('h:i:s A', strtotime($data['post']['created_at']))}}</li> --}}
+                                <li><i class="fa fa-clock-o"></i> {{date('h:i:s A', strtotime($post->created_at))}}</li>
+                                {{-- <li><i class="fa fa-calendar"></i> {{date('d M, Y', strtotime($data['post']['created_at']))}}</li> --}}
+                                <li><i class="fa fa-calendar"></i> {{date('d M, Y', strtotime($post->created_at))}}</li>
                             </ul>
                         </div>
                         <a href="">
-                            <img src="{{asset('images/blog/'.$data['post']['image'])}}" alt="">
+                            {{-- <img src="{{asset('images/blog/'.$data['post']['image'])}}" alt=""> --}}
+                            <img src="{{asset('images/blog/'.$post->image)}}" alt="">
                         </a>
-                        <p>{{$data['post']['content']}}</p> 
+                        {{-- <p>{{$data['post']['content']}}</p>  --}}
+                        <p>{{$post->content}}</p> 
                         <div class="pager-area">
                             <ul class="pager pull-right">
-                                <li><a href="{{$data['previous_url']}}">Pre</a></li>
-                                <li><a href="{{$data['next_url']}}">Next</a></li>
+                                {{-- <li><a href="{{$data['previous_url']}}">Pre</a></li> --}}
+                                <li><a href="{{$prev_url}}">Pre</a></li>
+                                {{-- <li><a href="{{$data['next_url']}}">Next</a></li> --}}
+                                <li><a href="{{$next_url}}">Next</a></li>
                             </ul>
                         </div>
                     </div>
@@ -54,8 +61,10 @@
                     </ul>
                     <ul class="tag">
                         <li>TAG:</li>
-                        @if (count($data['tags']))
-                        @foreach ($data['tags'] as $tag)
+                        {{-- @if (count($data['tags'])) --}}
+                        @if (count($tags))
+                        {{-- @foreach ($data['tags'] as $tag) --}}
+                        @foreach ($tags as $tag)
                         <li><a class="color" href="">{{$tag->tag}} <span>/</span></a></li>
                         @endforeach
                         @endif
